@@ -1,0 +1,84 @@
+<h2>Vendor Review Marketplace</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.name}}</span> 
+  </li>
+</ul>
+
+<div *ngIf="selectedHero">
+
+<div class="container">
+    <div class="card" style="width: 48rem;">
+       <div class="card-body">
+  <div class="row">
+    <div class="col-sm">
+       <h5 class="card-title">{{selectedHero.name}}</h5>
+    <p class="card-text"><strong>Sector: </strong>{{selectedHero.sector}}</p>
+    <p class="card-text"><strong>Average Rating: </strong>{{selectedHero.rating}}</p>
+  <button class="btn btn-sm btn-outline-primary" (click)="gotoDetail()">Number of Reviews: {{selectedHero.user}}</button>
+  <button class="btn btn-sm btn-outline-primary" (click)="gotoPop()">Pricing</button>
+  <button class="btn btn-sm btn-outline-primary" (click)="gotoPop()">Demo</button>
+    </div>
+    <div class="col-sm">
+       <img src="https://www.thenonprofittimes.com/wp-content/themes/twentynineteen-child/nplogo2.png" height="30" class="d-inline-block align-top" alt="">
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<p-table #dt [columns]="cols" [value]="cars" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="caption">
+        <div style="text-align: right">
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+        <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field" >
+                <!--div>
+                  <p-dropdown *ngSwitchCase="'brand'" [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                </div-->
+                <div>
+                  <p-dropdown *ngSwitchCase="'sector'" [options]="sectors" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                </div>
+                <div>
+                  <p-dropdown *ngSwitchCase="'year'" [options]="years" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                </div>
+                <div>
+                  <p-dropdown *ngSwitchCase="'rating'" [options]="ratings" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                </div>
+                <div>
+                  <p-dropdown *ngSwitchCase="'user'" [options]="users" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+               </div>
+               <div>
+                  <p-dropdown *ngSwitchCase="'revenue'" [options]="revenues" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+               </div>
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns" [class.selected]="hero === selectedHero"
+      (click)="onSelect(rowData)">
+      {{rowData[col.field]}}
+      </td>
+      </tr>
+    </ng-template>
+
+</p-table>
+

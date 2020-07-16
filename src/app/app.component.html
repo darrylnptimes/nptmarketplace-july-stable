@@ -1,0 +1,20 @@
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <a class="navbar-brand" href="https://www.thenonprofittimes.com/">
+    <img src="https://www.thenonprofittimes.com/wp-content/themes/twentynineteen-child/nplogo2.png" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <a class="navbar-brand" href="#"><a routerLink="marketplace" routerLinkActive="marketplace">Marketplace</a></a>
+    <a class="navbar-brand" href="#"><a routerLink="c1" routerLinkActive="c1">NPT</a></a>
+    <!--input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"-->
+    <!--button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button-->
+    <form class="form-inline">
+    <button class="btn btn-sm btn-outline-success" type="button" (click)="openChatWindow()">Get Expert Advice Now</button>
+
+    <livechat-widget #liveChatWidget licenseId="11082047" (onChatLoaded)="onChatLoaded($event)" (onChatWindowOpened)="onChatWindowOpened()" (onChatWindowMinimized)="onChatWindowMinimized()" [visitor]="visitor" [params]="params"></livechat-widget>
+
+  </form>
+  </form>
+</nav>
+
+<router-outlet></router-outlet>
